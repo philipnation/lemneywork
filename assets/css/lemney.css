@@ -1,0 +1,157 @@
+/* Add Custom Family font */
+@font-face {
+    
+    font-family: "Lemney Montserrat";
+    src: url("../../vendor/fonts/Montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Lemney-Red-Rose";
+    src: url("../../vendor/fonts/Red_Rose/RedRose-VariableFont_wght.ttf");
+}
+
+:root {
+
+    /* Theme colour */
+    --bg-lemney-primary-1: #FDB137;
+    --bg-lemney-primary-2: #F37E21;
+    --bg-lemney-secondary-1: #FFECCD;
+    --bg-lemney-secondary-2: #FFECB2;
+
+    /* Theme font */
+    --font-lemney-primary: "Lemney Montserrat", sans-serif;
+    --font-lemney-secondary: "Lemney-Red-Rose", sans-serif;
+
+    --font-lemney-size: 16px;
+}
+
+html, body {
+    box-sizing: border-box;
+    
+    font-family: var(--font-lemney-primary);
+    font-size: var(--font-lemney-size);
+}
+
+/* Override Bootstrap Defaults */
+/* .btn, */
+.btn:active {
+    border: none !important;
+}
+
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link.active {
+    color: black;
+}
+
+.form-control:focus,
+.form-select:focus {
+    box-shadow: 0 0 0 .25rem var(--bg-lemney-primary-2);
+    border-color: var(--bg-lemney-primary-1);
+}
+
+/* Buttons */
+.btn-lemney:hover {
+    background-color: rgba(128, 128, 128, 0.2);
+}
+.btn-lemney-primary {
+    background-color: var(--bg-lemney-primary-2);
+    color: white !important;
+    font-weight: 600;
+}
+.btn-lemney-primary:hover,
+.btn-lemney-primary:focus {
+    background-color: var(--bg-lemney-primary-2);
+    opacity: .8;
+    outline: none;
+}
+.btn-lemney-primary:active {
+    background-color: var(--bg-lemney-primary-2) !important;
+    outline: none;
+    border: none !important;
+}
+.btn-lemney-outline-primary {
+    border: 1px solid var(--bg-lemney-primary-2) !important;
+    color: var(--bg-lemney-primary-2);
+    font-weight: 600;
+}
+.btn-lemney-outline-primary:hover {
+    background-color: var(--bg-lemney-primary-2);
+    color: white;
+}
+
+.btn-lemney-review-star:hover,
+.btn-lemney-review-star:focus,
+.btn-lemney-review-star:active,
+.btn-lemney-review-star {
+    color: #D9D9D9 !important;
+    padding: 0 !important;
+    border: none !important;
+}
+
+
+.btn-lemney-review-star.active {
+    color: var(--bg-lemney-primary-1) !important;
+}
+
+/* -----------------
+    Custom Classes
+  ------------------ */
+
+/* Background Colours */
+.bg-lemney-primary-1 {
+    background-color: var(--bg-lemney-primary-1) !important;
+}
+.bg-lemney-primary-2 {
+    background-color: var(--bg-lemney-primary-2) !important;
+}
+.bg-lemney-primary-gradient {
+    background: linear-gradient(
+        to right, var(--bg-lemney-primary-1), var(--bg-lemney-primary-2)
+        ) !important;
+}
+.bg-lemney-secondary {
+    background-color: var(--bg-lemney-secondary-1);
+}
+.bg-lemney-secondary-1 {
+    background-color: var(--bg-lemney-secondary-1);
+}
+.bg-lemney-secondary-2 {
+    background-color: var(--bg-lemney-secondary-2);
+}
+
+/* Text Colour schemes */
+.text-lemney-primary {
+    color: var(--bg-lemney-primary-2) !important;
+}
+
+
+/* Font-family */
+.font-lemney-primary {
+    font-family: var(--font-lemney-primary);
+}
+
+.font-lemney-secondary {
+    font-family: var(--font-lemney-secondary);
+}
+
+/* Borders */
+.border-lemney-primary-1 {
+    border-color: var(--bg-lemney-primary-1) !important;
+}
+
+.border-lemney-primary-2 {
+    border-color: var(--bg-lemney-primary-2) !important;
+}
+
+.border-lemney-secondary-1 {
+    border-color: var(--bg-lemney-secondary-1) !important;
+}
+
+.border-lemney-secondary-2 {
+    border-color: var(--bg-lemney-secondary-2) !important;
+}
