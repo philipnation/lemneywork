@@ -89,7 +89,7 @@
                             </button>
                             <button type="button"
                                 class="btn btn-block d-block w-100 btn-lemney-outline-primary py-2 my-3">
-                                <img src="../assets/img/google-icons.png" alt="" class="img-fluid me-1">
+                                <img src="{{ asset('assets/img/google-icons.png') }}" alt="" class="img-fluid me-1">
                                 <a href="{{ route('auth.google') }}" class="text-black" style="text-decoration: none;">Sign Up With Google</a>
                             </button>
                         </div>

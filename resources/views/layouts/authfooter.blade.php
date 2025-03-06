@@ -7,7 +7,7 @@
         <div class="my-3">
             <i class="fa-brands fa-instagram"></i>
             <i class="fa-brands fa-facebook-f"></i>
-            <span>lemney_ltf | lemney.com ltd.</span>
+            <span>lemney_ltf | lemney.com ltd</span>
         </div>
 
         <!-- Logo -->
@@ -39,7 +39,7 @@
                     <!-- Email -->
                     <div class="my-2">
                         <h6>Email</h6>
-                        <div>customercare@lennygroup.com</div>
+                        <div>support@lemney.com</div>
                     </div>
                 </div>
 
@@ -47,9 +47,9 @@
                 <div class="col-md-3 my-3">
                     <h5>Services</h5>
                     <ul class="list-unstyled">
-                        <li><a href="" class="link">Honey Sale</a></li>
-                        <li><a href="" class="link">Logistics</a></li>
-                        <li><a href="" class="link">Home Service</a></li>
+                        <li><a href="{{ route('user.honey') }}" class="link">Honey Sale</a></li>
+                        <li><a href="{{ route('user.logistics') }}" class="link">Logistics</a></li>
+                        <li><a href="{{ route('user.homeservice') }}" class="link">Home Service</a></li>
                         <li><a href="" class="link">Consultancy</a></li>
                     </ul>
                 </div>
