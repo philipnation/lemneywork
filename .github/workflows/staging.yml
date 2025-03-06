@@ -11,6 +11,6 @@ jobs:
     - name: 📂 Sync files
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
-        server: ftp.nairaflowng.xyz
-        username: nairaflo@testarea.bepscord.com
+        server: ftp.lemney.com
+        username: lemney@lemney.com
         password: Technology10()
