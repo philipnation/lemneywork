@@ -5,8 +5,8 @@
 
         <!-- Social media handles -->
         <div class="my-3">
-            <i class="fa-brands fa-instagram"></i>
-            <i class="fa-brands fa-facebook-f"></i>
+            <a href="https://www.instagram.com/lemney_ltd/profilecard/?igsh=MW5iZnMzNXJxYTA0bg==" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/15NuEDmWbj/?mibextid=LQQJ4d" target="_blank" class="text-center text-decoration-none"><i class="fa-brands fa-facebook-f"></i></a>
             <span>lemney_ltf | lemney.com ltd</span>
         </div>
 
@@ -32,14 +32,12 @@
 
                     <!-- Phone number -->
                     <div class="my-2">
-                        <h6>Phone Number</h6>
-                        <div>+234 911 919 4182</div>
+                        <h6>Phone Number: +234 911 919 4182</h6>
                     </div>
 
                     <!-- Email -->
                     <div class="my-2">
-                        <h6>Email</h6>
-                        <div>support@lemney.com</div>
+                        <h6>Email: support@lemney.com</h6>
                     </div>
                 </div>
 
