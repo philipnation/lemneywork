@@ -15,8 +15,8 @@
     <!-- Font Awesome -->
     {{-- <link rel="stylesheet" href="{{ asset('assets/node_modules/@fortawesome/fontawesome-free/css/all.min.css') }}"> --}}
     <!-- Swiper -->
-    {{-- <link rel="stylesheet" href="{{ asset('assets/node_modules/swiper/swiper-bundle.min.css') }}"> --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
+    <link rel="stylesheet" href="{{ asset('assets/node_modules/swiper/swiper-bundle.min.css') }}">
+    {{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/> --}}
 
 
     <!-- Scripts -->
@@ -26,7 +26,7 @@
     <!-- Bootstrap -->
     <script src="{{ asset('assets/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js') }}" defer></script>
     <!-- Swiper -->
-    {{-- <script src="{{ asset('assets/node_modules/swiper/swiper-bundle.min.js') }}" defer></script> --}}
+    <script src="{{ asset('assets/node_modules/swiper/swiper-bundle.min.js') }}" defer></script>
 
     <!-- Custom styles -->
     <link rel="stylesheet" href="{{ asset('assets/css/navbar.css') }}">

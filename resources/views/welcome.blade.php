@@ -128,6 +128,119 @@
             </div>
         </section>
 
+
+        <!-- Our Service Options -->
+        <section class="container-fluid px-3 px-md-5 py-5">
+
+            <div class="d-none d-md-block text-uppercase my-3">
+                <h3 class="fw-bold">Our Service Options</h3>
+            </div>
+
+            <div class="row justify-content-center">
+
+
+                <div class="col-md-6 order-md-last text-center">
+                    <img src="{{ asset('assets/img/honey_sale_offer.png') }}" alt="" class="img-fluid" style="max-height: 400px;">
+                </div>
+
+                <div class="col-md-6">
+
+                    <!-- Card -->
+                    <div class="card shadow border-0 mx-auto mx-md-0">
+                        <form action="{{ route('user.honey.home.store') }}" method="post">
+                            @csrf
+                            <div class="card-body">
+
+                                <!-- Cars title -->
+                                <div>
+                                    <h4 class="text-lemney-primary fs-3 text-uppercase fw-semibold card-title">Honey Sale
+                                        <br>
+                                        Offers
+                                    </h4>
+                                </div>
+
+                                <!-- Text -->
+                                <p class="card-text small">Make a choice on our honey measurement options. With our weight
+                                    based
+                                    measurement option you can opt in to order your honey and we give you a price estimate
+                                    as well as delivery to your door step.</p>
+
+
+                                <!-- Price Checker -->
+                                <div class="my-3">
+                                    <div class="d-flex align-items-center justify-content-between py-2 small">
+                                        <span>Input Amount</span>
+                                        <span>Price: <span class="text-lemney-primary">&#x20A6;6000</span></span>
+                                    </div>
+
+                                    <!-- Input -->
+                                    <div class="input-group py-2">
+                                        <input type="text" name="price" value="100" hidden>
+                                        <input type="number" name="amount" id="amount"
+                                            class="form-control flex-fill flex-grow-1 w-auto">
+                                        <select name="option" id="option" class="form-select">
+                                            <option value="litre">Litre</option>
+                                            <option value="bottle">Bottle</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="d-flex align-items-center justify-content-between gap-2">
+                                    <button class="btn btn-lemney-primary text-uppercase px-md-4">Buy Now</button>
+                                    <button class="btn btn-lemney-outline-primary text-uppercase px-md-4" name="later" value="yes">Save for later</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!---here-->
+
+
+        <!-- Send That Package Flying Section -->
+        <section class="container-fluid px-3 px-md-5 py-3">
+
+            <div class="row">
+
+                <div class="col-md-6 order-md-last">
+                    <img src="{{ asset('assets/img/fast_delivery_logistics_illustration.png') }}" alt="" class="img-fluid">
+                </div>
+
+                <div class="col-md-6">
+
+                    <!-- Title -->
+                    <div class="d-none d-md-block text-uppercase my-3">
+                        <h3 class="fw-bold">Send That Pakcage Flying</h3>
+                    </div>
+
+                    <!--  -->
+                    <div>
+                        <p>
+                            We aim to deliver your package you with your schedule in mind with out friendly pick-up
+                            options to serve you with ease. <br />
+                            Just by the clik of a button and a few types we can get across to you and the package
+                            receiver. <br />
+                            Our logistics platform specializes in reliable and efficient package shipping solutions for
+                            businesses and individuals. Offering real-time tracking, seamless delivery scheduling, and
+                            optimised routes to ensure timely shipments. <br>
+                            Our network guarantees safe handling and fast delivery of packages. From small parcels to
+                            bulk shipments, we deliver excellence every step of the way
+                        </p>
+                    </div>
+
+                    <div>
+                        <div class="d-grid">
+                            <a href="{{ route('user.logistics') }}" class="btn btn-lemney-primary text-uppercase fw-bold">Request Logistics</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Housing Solution Section -->
         <section class="container-fluid px-3 px-md-5 py-5">
 
@@ -267,75 +380,6 @@
             </div>
         </section>
 
-        <!-- Our Service Options -->
-        <section class="container-fluid px-3 px-md-5 py-5">
-
-            <div class="d-none d-md-block text-uppercase my-3">
-                <h3 class="fw-bold">Our Service Options</h3>
-            </div>
-
-            <div class="row justify-content-center">
-
-
-                <div class="col-md-6 order-md-last text-center">
-                    <img src="{{ asset('assets/img/honey_sale_offer.png') }}" alt="" class="img-fluid" style="max-height: 400px;">
-                </div>
-
-                <div class="col-md-6">
-
-                    <!-- Card -->
-                    <div class="card shadow border-0 mx-auto mx-md-0">
-                        <form action="{{ route('user.honey.home.store') }}" method="post">
-                            @csrf
-                            <div class="card-body">
-
-                                <!-- Cars title -->
-                                <div>
-                                    <h4 class="text-lemney-primary fs-3 text-uppercase fw-semibold card-title">Honey Sale
-                                        <br>
-                                        Offers
-                                    </h4>
-                                </div>
-
-                                <!-- Text -->
-                                <p class="card-text small">Make a choice on our honey measurement options. With our weight
-                                    based
-                                    measurement option you can opt in to order your honey and we give you a price estimate
-                                    as well as delivery to your door step.</p>
-
-
-                                <!-- Price Checker -->
-                                <div class="my-3">
-                                    <div class="d-flex align-items-center justify-content-between py-2 small">
-                                        <span>Input Amount</span>
-                                        <span>Price: <span class="text-lemney-primary">&#x20A6;6000</span></span>
-                                    </div>
-
-                                    <!-- Input -->
-                                    <div class="input-group py-2">
-                                        <input type="text" name="price" value="100" hidden>
-                                        <input type="number" name="amount" id="amount"
-                                            class="form-control flex-fill flex-grow-1 w-auto">
-                                        <select name="option" id="option" class="form-select">
-                                            <option value="litre">Litre</option>
-                                            <option value="bottle">Bottle</option>
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Button -->
-                                <div class="d-flex align-items-center justify-content-between gap-2">
-                                    <button class="btn btn-lemney-primary text-uppercase px-md-4">Buy Now</button>
-                                    <button class="btn btn-lemney-outline-primary text-uppercase px-md-4" name="later" value="yes">Save for later</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
         <!-- Commitment to Home Service -->
         <section class="container-fluid px-3 px-md-5 py-3">
 
@@ -379,45 +423,6 @@
 
         </section>
 
-        <!-- Send That Package Flying Section -->
-        <section class="container-fluid px-3 px-md-5 py-3">
-
-            <div class="row">
-
-                <div class="col-md-6 order-md-last">
-                    <img src="{{ asset('assets/img/fast_delivery_logistics_illustration.png') }}" alt="" class="img-fluid">
-                </div>
-
-                <div class="col-md-6">
-
-                    <!-- Title -->
-                    <div class="d-none d-md-block text-uppercase my-3">
-                        <h3 class="fw-bold">Send That Pakcage Flying</h3>
-                    </div>
-
-                    <!--  -->
-                    <div>
-                        <p>
-                            We aim to deliver your package you with your schedule in mind with out friendly pick-up
-                            options to serve you with ease. <br />
-                            Just by the clik of a button and a few types we can get across to you and the package
-                            receiver. <br />
-                            Our logistics platform specializes in reliable and efficient package shipping solutions for
-                            businesses and individuals. Offering real-time tracking, seamless delivery scheduling, and
-                            optimised routes to ensure timely shipments. <br>
-                            Our network guarantees safe handling and fast delivery of packages. From small parcels to
-                            bulk shipments, we deliver excellence every step of the way
-                        </p>
-                    </div>
-
-                    <div>
-                        <div class="d-grid">
-                            <a href="{{ route('user.logistics') }}" class="btn btn-lemney-primary text-uppercase fw-bold">Request Logistics</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Partnership Experience -->
         <section class="container-fluid px-3 px-md-5 py-5">
@@ -1083,5 +1088,23 @@
 
 
     </main>
-
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var swiper = new Swiper(".swiperMain", {
+                loop: true,
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: false,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+            });
+        });
+    </script>
 @include('layouts.authfooter')
