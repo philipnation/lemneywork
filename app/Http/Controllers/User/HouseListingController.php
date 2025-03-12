@@ -97,4 +97,23 @@ class HouseListingController extends Controller
 
         return redirect()->route('user.houselisting')->with('success', 'House listing created successfully');
     }
+
+    public function listed()
+    {
+        $houses = HouseListing::where('userid', Auth::user()->id)->get();
+        foreach ($houses as $house) {
+            $images = json_decode($house->images, true); // Decode JSON into an array
+            $firstImage = $images[0] ?? null; // Get the first image or null if empty
+            $house->img = $firstImage;
+            //dd($firstImage);
+        }
+        return view('user.houselisted', compact('houses'));
+    }
+
+    public function deletelisted($id)
+    {
+        $house = HouseListing::find($id);
+        $house->delete();
+        return redirect()->route('user.houselisted')->with('success', 'House listing deleted successfully');
+    }
 }

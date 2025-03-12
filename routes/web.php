@@ -91,5 +91,10 @@ Route::get('/user/review', [ProductReviewController::class, 'index'])->middlewar
 Route::post('/user/review', [ProductReviewController::class, 'store'])->middleware(['auth', 'verified'])->name('user.review.store');
 Route::get('/user/review/delete/{id}', [ProductReviewController::class, 'destroy'])->middleware(['auth', 'verified'])->name('user.review.delete');
 
+//House listed
+Route::get('/user/houselisted', [HouseListingController::class, 'listed'])->middleware(['auth', 'verified'])->name('user.houselisted');
+Route::get('/user/houselisted/delete/{id}', [HouseListingController::class, 'deletelisted'])->middleware(['auth', 'verified'])->name('user.houselisted.delete');
+
+
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

@@ -37,7 +37,7 @@
 
                     <!-- Email -->
                     <div class="my-2">
-                        <h6>Email: support@lemney.com</h6>
+                        <h6>Email: customercare@lemney.com</h6>
                     </div>
                 </div>
 

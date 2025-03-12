@@ -39,12 +39,12 @@
             </li>
             <li class="py-1"><a href="{{ route('user.logistics') }}" class="link">Logistics</a></li>
             <li class="py-1"><a href="{{ route('user.homeservice') }}" class="link">Home Service</a></li>
-            <li class="py-1"><a href="./booked_service.html" class="link">Booked Service</a></li>
+            {{-- <li class="py-1"><a href="./booked_service.html" class="link">Booked Service</a></li> --}}
             <li class="py-1"><a href="{{ route('user.notification') }}" class="link">Notifications</a></li>
             <li class="py-1"><a href="{{ route('user.partnership') }}" class="link">Partnership</a></li>
             <li class="py-1"><a href="{{ route('user.houselisting') }}" class="link">House Listing</a></li>
             <li class="py-1"><a href="{{ route('user.savedsubmission') }}" class="link">Saved Submission</a></li>
-            <li class="py-1"><a href="./saved_house.html" class="link">House Listed</a></li>
+            <li class="py-1"><a href="{{ route('user.houselisted') }}" class="link">House Listed</a></li>
         </ul>
     </div>
 
@@ -67,12 +67,12 @@
                         <li class="py-1"><a href="{{ route('user.review.index') }}" class="link">Product Review</a></li>
                         <li class="py-1"><a href="{{ route('user.logistics') }}" class="link">Logistics</a></li>
                         <li class="py-1"><a href="{{ route('user.homeservice') }}" class="link">Home Service</a></li>
-                        <li class="py-1"><a href="./booked_service.html" class="link">Booked Service</a></li>
+                        {{-- <li class="py-1"><a href="./booked_service.html" class="link">Booked Service</a></li> --}}
                         <li class="py-1"><a href="{{ route('user.notification') }}" class="link">Notifications</a></li>
                         <li class="py-1"><a href="{{ route('user.partnership') }}" class="link">Partnership</a></li>
                         <li class="py-1"><a href="{{ route('user.houselisting') }}" class="link">House Listing</a></li>
                         <li class="py-1"><a href="{{ route('user.savedsubmission') }}." class="link">Saved Submission</a></li>
-                        <li class="py-1"><a href="./saved_house.html" class="link">House Listing</a></li>
+                        <li class="py-1"><a href="{{ route('user.houselisted') }}" class="link">House Listing</a></li>
                     </ul>
                 </div>
             </div>
