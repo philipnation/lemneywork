@@ -23,6 +23,19 @@ Route::get('test', function () {
     return view('user.orderhistory');
 });
 
+Route::get('about-us', function () {
+    return view('frontend.aboutus');
+})->name('aboutus');
+
+Route::get('terms', function () {
+    return view('frontend.terms');
+})->name('terms');
+
+Route::get('privacy', function () {
+    return view('frontend.privacy');
+})->name('privacy');
+
+
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
 Route::get('/dashboard', [HomeController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');

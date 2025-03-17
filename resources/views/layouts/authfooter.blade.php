@@ -56,10 +56,10 @@
                 <div class="col-md-3 my-3">
                     <h5>Policy</h5>
                     <ul class="list-unstyled">
-                        <li><a href="" class="link">FAQ</a></li>
-                        <li><a href="" class="link">Terms and Condition</a></li>
-                        <li><a href="" class="link">Privacy Policy</a></li>
-                        <li><a href="" class="link">About Us</a></li>
+                        {{-- <li><a href="" class="link">FAQ</a></li> --}}
+                        <li><a href="{{ route('terms') }}" class="link">Terms and Condition</a></li>
+                        <li><a href="{{ route('privacy') }}" class="link">Privacy Policy</a></li>
+                        <li><a href="{{ route('aboutus') }}" class="link">About Us</a></li>
                     </ul>
                 </div>
 
