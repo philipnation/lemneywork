@@ -78,8 +78,8 @@
             <!-- Sidebar Menu Options -->
             <ul class="sidebar-menu-list list-group list-group-flush">
                 {{-- <li><a href="./recent.html" class="list-group-item list-group-item-action">Recent</a></li> --}}
-                <li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
-                        Orders</a></li>
+                <!--<li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
+                        Orders</a></li>-->
                 <li><a href="{{ route('admin.honey') }}" class="list-group-item list-group-item-action">Honey Orders</a>
                 </li>
 
@@ -113,10 +113,12 @@
 
             <!--  -->
             <div class="position-sticky sticky-bottom bg-white border-top border-2 ps-3 py-2">
-                <button class="btn btn-lemney text-danger">
+                {{-- <button class="btn btn-lemney text-danger"> --}}
                     <i class="fa fa-sign-out me-2"></i>
-                    Logout
-                </button>
+                    <a href="{{ route('logout') }}" class="text-danger text-decoration-none">
+                        Logout
+                    </a>
+                {{-- </button> --}}
             </div>
 
         </div>
@@ -138,8 +140,8 @@
                     <!-- Sidebar Menu Options -->
                     <ul class="sidebar-menu-list list-unstyled list-group list-group-flush">
                         {{-- <li><a href="./recent.html" class="list-group-item list-group-item-action">Recent</a></li> --}}
-                        <li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
-                                Orders</a></li>
+                        <!--<li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
+                                Orders</a></li>-->
                         <li><a href="{{ route('admin.honey') }}" class="list-group-item list-group-item-action">Honey
                                 Orders</a>
                         </li>
@@ -176,10 +178,12 @@
 
                 <!--  -->
                 <div class="position-sticky sticky-bottom bg-white border-top ps-3 py-2">
-                    <button class="btn btn-lemney text-danger">
+                    {{-- <button class="btn btn-lemney text-danger"> --}}
                         <i class="fa fa-sign-out me-2"></i>
+                        <a href="{{ route('logout') }}">
                         Logout
-                    </button>
+                        </a>
+                    {{-- </button> --}}
                 </div>
 
             </div>
