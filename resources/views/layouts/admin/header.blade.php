@@ -180,7 +180,7 @@
                 <div class="position-sticky sticky-bottom bg-white border-top ps-3 py-2">
                     {{-- <button class="btn btn-lemney text-danger"> --}}
                         <i class="fa fa-sign-out me-2"></i>
-                        <a href="{{ route('logout') }}">
+                        <a href="{{ route('logout') }}" class="text-danger text-decoration-none">
                         Logout
                         </a>
                     {{-- </button> --}}
