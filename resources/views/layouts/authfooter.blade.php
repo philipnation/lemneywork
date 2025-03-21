@@ -7,7 +7,7 @@
         <div class="my-3">
             <a href="https://www.instagram.com/lemney_ltd/profilecard/?igsh=MW5iZnMzNXJxYTA0bg==" target="_blank" class="text-white text-decoration-none"><i class="fa-brands fa-instagram"></i></a>
             <a href="https://www.facebook.com/share/15NuEDmWbj/?mibextid=LQQJ4d" target="_blank" class="text-center text-decoration-none"><i class="fa-brands fa-facebook-f"></i></a>
-            <span>lemney_ltf | lemney.com ltd</span>
+            <span>lemney_ltd | lemney.com ltd</span>
         </div>
 
         <!-- Logo -->
@@ -48,7 +48,7 @@
                         <li><a href="{{ route('user.honey') }}" class="link">Honey Sale</a></li>
                         <li><a href="{{ route('user.logistics') }}" class="link">Logistics</a></li>
                         <li><a href="{{ route('user.homeservice') }}" class="link">Home Service</a></li>
-                        <li><a href="" class="link">Consultancy</a></li>
+                        {{-- <li><a href="" class="link">Consultancy</a></li> --}}
                     </ul>
                 </div>
 
