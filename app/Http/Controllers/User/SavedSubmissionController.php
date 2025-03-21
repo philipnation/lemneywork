@@ -9,15 +9,30 @@ use App\Models\HouseListing;
 use App\Models\Logistics;
 use App\Models\Partnership;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SavedSubmissionController extends Controller
 {
     function index(){
-        $honey = Honey::where('saved', 'yes')->get();
-        $houseListings = HouseListing::where('saved', 'yes')->get();
-        $homeServices = Homeservice::where('saved', 'yes')->get();
-        $logistics = Logistics::where('saved', 'yes')->get();
-        $partnerships = Partnership::where('saved', 'yes')->get();
+        $honey = Honey::where('saved', 'yes')
+                ->where('userid', Auth::user()->id)
+                ->get();
+                
+        $houseListings = HouseListing::where('saved', 'yes')
+                        ->where('userid', Auth::user()->id)
+                        ->get();
+
+        $homeServices = Homeservice::where('saved', 'yes')
+                        ->where('userid', Auth::user()->id)
+                        ->get();
+
+        $logistics = Logistics::where('saved', 'yes')
+                    ->where('userid', Auth::user()->id)
+                    ->get();
+
+        $partnerships = Partnership::where('saved', 'yes')
+                        ->where('userid', Auth::user()->id)
+                        ->get();
 
         $savedItems = collect()
             ->merge($honey)
