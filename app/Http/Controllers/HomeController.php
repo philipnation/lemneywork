@@ -167,7 +167,7 @@ class HomeController extends Controller
 
                     <!-- Footer section -->
                     <div class='footer'>
-                        <p>© 2024 wallsttradespro. All rights reserved.</p>
+                        <p>© 2025 Lemney. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -213,7 +213,7 @@ class HomeController extends Controller
 
 
             // Recipients
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'wallsttradespro');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'Lemney');
             $mail->addAddress($user->email, $user->name);
 
             // Content
@@ -285,12 +285,12 @@ class HomeController extends Controller
                         <div>
                         $link <br>
                         </div>
-                        <p>If you did not make this request, contact us at admin@wallsttradespro.com</p>
+                        <p>If you did not make this request, contact us at admin@Lemney.com</p>
                     </div>
 
                     <!-- Footer section -->
                     <div class='footer'>
-                        <p>© 2024 wallsttradespro. All rights reserved.</p>
+                        <p>© 2024 Lemney. All rights reserved.</p>
                     </div>
                 </div>
             </body>
@@ -356,7 +356,7 @@ class HomeController extends Controller
             $mail->Port       = env('MAIL_PORT');
 
             // Recipients
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'wallsttradespro');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'), 'Lemney');
             $mail->addAddress($email, $user);
 
             // Content
@@ -426,7 +426,7 @@ class HomeController extends Controller
 
                     <!-- Footer section -->
                     <div class='footer'>
-                        <p>© 2024 wallsttradespro. All rights reserved.</p>
+                        <p>© 2025 Lemney. All rights reserved.</p>
                     </div>
                 </div>
             </body>
