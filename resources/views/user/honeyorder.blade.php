@@ -78,37 +78,20 @@
                                     <!-- Recipient Pickup Address -->
                                     <div class="my-2">
                                         <label for="state" class="form-label fw-bold">Recipient Pickup Address</label>
-                                        <select name="address" id="address" class="form-select">
-                                            <option value="address1">Address 1</option>
-                                            <option value="address2">Address 2</option>
-                                            <option value="address3">Address 3</option>
-                                            <option value="address4">Address 4</option>
-                                            <option value="address5">Address 5</option>
-                                        </select>
+                                        <input type="text" name="address" id="address" class="form-control" required>
+
                                     </div>
 
                                     <!-- Recipient State -->
                                     <div class="my-2">
                                         <label for="state" class="form-label fw-bold">Recipient State</label>
-                                        <select name="state" id="state" class="form-select">
-                                            <option value="state1">State 1</option>
-                                            <option value="state2">State 2</option>
-                                            <option value="state3">State 3</option>
-                                            <option value="state4">State 4</option>
-                                            <option value="state5">State 5</option>
-                                        </select>
+                                        <input type="text" name="state" id="state" class="form-control" required>
                                     </div>
 
                                     <!-- Recipient Local Government -->
                                     <div class="my-2">
                                         <label for="lga" class="form-label fw-bold">Recipient Local Government</label>
-                                        <select name="lga" id="lga" class="form-select">
-                                            <option value="lga1">LGA 1</option>
-                                            <option value="lga2">LGA 2</option>
-                                            <option value="lga3">LGA 3</option>
-                                            <option value="lga4">LGA 4</option>
-                                            <option value="lga5">LGA 5</option>
-                                        </select>
+                                        <input type="text" name="lga" id="lga" class="form-control" required>
                                     </div>
 
                                     <div class="my-2">

@@ -75,13 +75,7 @@
                                     <!-- Service Location -->
                                     <div class="my-2">
                                         <label for="location" class="form-label fw-semibold">Service Location</label>
-                                        <select name="location" id="location" class="form-select" required>
-                                            <option value="location1" selected>Location 1</option>
-                                            <option value="location2">Location 2</option>
-                                            <option value="location3">Location 3</option>
-                                            <option value="location4">Location 4</option>
-                                            <option value="location5">Location 5</option>
-                                        </select>
+                                        <input type="text" name="location" id="location" class="form-control" required>
                                     </div>
 
                                     <!-- Phone Number -->
@@ -93,25 +87,14 @@
                                     <!-- Recipient State -->
                                     <div class="my-2">
                                         <label for="state" class="form-label fw-semibold">Recipient State</label>
-                                        <select name="state" id="state" class="form-select" required>
-                                            <option value="state1">State 1</option>
-                                            <option value="state2">State 2</option>
-                                            <option value="state3">State 3</option>
-                                            <option value="state4">State 4</option>
-                                            <option value="state5">State 5</option>
-                                        </select>
+                                        <input type="text" name="state" id="state" class="form-control" required>
                                     </div>
 
                                     <!-- Recipient Local Government -->
                                     <div class="my-2">
                                         <label for="lga" class="form-label fw-semibold">Recipient Local Government</label>
-                                        <select name="lga" id="lga" class="form-select" required>
-                                            <option value="lga1">LGA 1</option>
-                                            <option value="lga2">LGA 2</option>
-                                            <option value="lga3">LGA 3</option>
-                                            <option value="lga4">LGA 4</option>
-                                            <option value="lga5">LGA 5</option>
-                                        </select>
+                                        <input type="text" name="lga" id="lga" class="form-control" required>
+
                                     </div>
 
                                     <!-- Required Home Service -->
