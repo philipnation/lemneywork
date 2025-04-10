@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HouseListingController;
 use App\Http\Controllers\Admin\LogisticsController;
 use App\Http\Controllers\Admin\ServiceAgentController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('testadmin', function () {
@@ -55,3 +56,7 @@ Route::get('admin/serviceagent', [ServiceAgentController::class, 'index'])->name
 
 Route::get('admin/houselisting', [HouseListingController::class, 'index'])->name('admin.houselisting');
 Route::get('admin/houselisting/{id}/approve', [HouseListingController::class, 'updatestatus'])->name('admin.houselisting.approve');
+
+
+Route::get('admin/users', [UserController::class, 'index'])->name('admin.users');
+Route::post('admin/users/edit', [UserController::class, 'edit'])->name('admin.users.edit');

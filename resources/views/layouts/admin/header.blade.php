@@ -85,15 +85,14 @@
                 <li><a href="{{ route('admin.homeservice') }}" class="list-group-item list-group-item-action p-3">Home
                         Service</a>
                 </li>
-                <!--<li><a href="./booked_service.html" class="list-group-item list-group-item-action">Booked
-                        Services</a></li>-->
+                <li><a href="{{ route('admin.users') }}" class="list-group-item list-group-item-action p-3">Users Managment</a></li>
                 <!--<li><a href="./support.html"
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                         Support
                         <i class="fa fa-unlock-alt"></i>
                     </a></li>
                 <li>-->
-                    <li><a href="{{ route('admin.service') }}" class="list-group-item list-group-item-action">Services</a></li>
+                    <li><a href="{{ route('admin.service') }}" class="list-group-item list-group-item-action p-3">Services</a></li>
 
                     <a href="{{ route('admin.homeservice') }}"
                         class="list-group-item list-group-item-action p-3 d-flex align-items-center justify-content-between">
@@ -150,8 +149,7 @@
                         <li><a href="{{ route('admin.homeservice') }}" class="list-group-item list-group-item-action">Home
                                 Service</a>
                         </li>
-                        <li><a href="./booked_service.html" class="list-group-item list-group-item-action">Booked
-                                Services</a></li>
+                        <li><a href="{{ route('admin.users') }}" class="list-group-item list-group-item-action">Users Managemnet</a></li>
                         <li><a href="./support.html"
                                 class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                                 Support

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HomeController;
 use App\Models\Accountdetail;
 use App\Models\HoneyPrice;
 use App\Models\Service;
@@ -12,6 +13,10 @@ class ServiceController extends Controller
 {
     public function index()
     {
+        if (!HomeController::isAdmin()) {
+            return redirect('admin/login')->with('error', 'Session Closed');
+        }
+
         $services = Service::all();
         $honeyprices = HoneyPrice::all();
         $accountdetails = Accountdetail::first();
