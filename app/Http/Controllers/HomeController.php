@@ -85,19 +85,19 @@ class HomeController extends Controller
         return $admin;
     }
 
-    function sendcode(){
+    function sendcode() {
         $mail = new PHPMailer(true);
 
         Session::put('code', [
-             'id' => rand(000000, 9999999)
-         ]);
+            'id' => rand(100000, 999999)
+        ]);
 
-         $codeid = session('code.id');
-
+        $codeid = session('code.id');
 
         try {
             $user = Auth::user();
-            // Server settings
+
+            // Mail server config
             $mail->isSMTP();
             $mail->Host       = env('MAIL_HOST');
             $mail->SMTPAuth   = true;
@@ -106,101 +106,93 @@ class HomeController extends Controller
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
             $mail->Port       = env('MAIL_PORT');
 
-
-            // Recipients
-            $mail->setFrom(env('MAIL_FROM_ADDRESS'), env('MAIL_FROM_NAME'));
+            // Email metadata
+            $mail->setFrom('no-reply@lemney.com', 'Lemney Verification');
             $mail->addAddress($user->email, $user->name);
 
-            // Content
+            // Email content
             $mail->isHTML(true);
-            $mail->Subject = 'Verification Code';
-            $mail->Body    = "
+            $mail->Subject = 'Your Lemney Verification Code';
 
-            <!DOCTYPE html>
-            <html lang='en'>
+            $mail->AltBody = "Hello $user->name,\n\nYour verification code is: $codeid\n\nIf you didn’t request this, please contact our support team.";
+
+            $mail->Body = "
+            <html>
             <head>
-                <meta charset='UTF-8'>
-                <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-                <title>Recycle Placed</title>
                 <style>
-                    /* Reset styles */
-                    body, html {
+                    body {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        background-color: #f9f9f9;
+                        color: #333;
                         margin: 0;
-                        padding: 0;
-                        font-family: Arial, sans-serif;
-                        line-height: 1.6;
+                        padding: 20px;
                     }
-                    /* Container styles */
-                    .container {
+                    .email-container {
                         max-width: 600px;
-                        margin: 0 auto;
-                        padding: 20px;
-                        background-color: #f7f7f7;
-                        border-radius: 10px;
+                        margin: auto;
+                        background: #ffffff;
+                        border-radius: 8px;
+                        overflow: hidden;
+                        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
                     }
-                    /* Header styles */
                     .header {
-                        text-align: center;
-                        padding-bottom: 20px;
-                    }
-                    .header img {
-                        max-width: 100px;
-                        height: auto;
-                    }
-                    /* Content styles */
-                    .content {
+                        background-color: #4CAF50;
+                        color: white;
                         padding: 20px;
-                        background-color: #ffffff;
-                        border-radius: 5px;
+                        text-align: center;
                     }
-                    .content p{
-                      font-size: 17px;
+                    .content {
+                        padding: 30px;
                     }
-                    /* Footer styles */
+                    .code-box {
+                        font-size: 28px;
+                        font-weight: bold;
+                        background-color: #f0f0f0;
+                        padding: 10px 20px;
+                        text-align: center;
+                        border-radius: 6px;
+                        margin: 20px 0;
+                        letter-spacing: 4px;
+                        color: #222;
+                    }
                     .footer {
                         text-align: center;
-                        padding-top: 20px;
-                        color: #888888;
+                        font-size: 13px;
+                        color: #888;
+                        padding: 20px;
                     }
                 </style>
             </head>
             <body>
-                <div class='container'>
-                    <!-- Header with company logo -->
+                <div class='email-container'>
                     <div class='header'>
-                        <!--<img src='https://energychleen.com/assets/img/energy.png' alt='EnergyChleen Logo'>-->
+                        <h2>Verify Your Lemney Account</h2>
                     </div>
-
-                    <!-- Main content section -->
                     <div class='content'>
-                        <h2>Verify your account</h2>
+                        <p>Hello <strong>{$user->name}</strong>,</p>
+                        <p>Thank you for using Lemney. Please use the verification code below to verify your email address:</p>
 
-                        <p>Dear $user->name,</p>
-                        <p>Your verification code is</p>
-                        <div>
-                        $codeid <br>
-                        </div>
-                        <p>If you did not make this request, contact us at support@lemney.com</p>
+                        <div class='code-box'>$codeid</div>
+
+                        <p>This code will expire shortly. Do not share it with anyone.</p>
+
+                        <p>If you did not request this, kindly contact us immediately at <a href='mailto:support@lemney.com'>support@lemney.com</a>.</p>
                     </div>
-
-                    <!-- Footer section -->
                     <div class='footer'>
-                        <p>© 2025 Lemney. All rights reserved.</p>
+                        &copy; " . date('Y') . " Lemney. All rights reserved.
                     </div>
                 </div>
             </body>
-            </html>
-
-
-            ";
+            </html>";
 
             $mail->send();
 
-            return view('auth.verify-email')->with('success', 'New code has been sent to your email.');
+            return view('auth.verify-email')->with('success', 'A new verification code has been sent to your email.');
         } catch (Exception $e) {
-            return response()->json(['message' => 'Email could not be sent. Mailer Error: '. $codeid . $mail->ErrorInfo], 500);
+            return response()->json(['message' => 'Email could not be sent. Mailer Error: '. $mail->ErrorInfo], 500);
         }
     }
+
 
 
     function resetpassword(Request $request){
