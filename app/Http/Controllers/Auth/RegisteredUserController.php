@@ -43,6 +43,11 @@ class RegisteredUserController extends Controller
                 return redirect()->back()->with('error', 'Password does not match');
             }
 
+            $usersinfo = User::where('ipaddress', request()->ip())->count();
+            if($usersinfo >= 1){
+                return redirect()->back()->with('error', 'You have already registered an account on this device');
+            }
+
             $user = User::create([
                 'surname' => $request->surname,
                 'firstname' => $request->firstname,
@@ -50,6 +55,7 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'phone' => $request->phone,
                 'address' => $request->address,
+                'ipaddress' => request()->ip(),
             ]);
 
             event(new Registered($user));
