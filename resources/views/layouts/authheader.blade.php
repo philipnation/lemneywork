@@ -56,8 +56,17 @@
                     <!-- NavBar icons -->
                     <div class="d-flex align-items-center justify-content-center gap-2">
                         {{-- <button type="button" class="btn"><i class="fa fa-search text-white"></i></button> --}}
-                        <button type="button" class="btn"><a href="{{ route('user.savedsubmission') }}"><i class="fa fa-shopping-cart text-white"></i></a></button>
-                        <button type="button" class="btn"><a href="{{ route('register') }}"><i class="fa fa-user text-white"></i></a></button>
+                        @auth
+
+                        <button type="button" class="btn"><a href="{{ route('logout') }}"><i class="fa fa-power-off text-white"></i></a></button>
+                        <button type="button" class="btn"><a href="{{ route('dashboard') }}"><i class="fa fa-user text-white"></i></a></button>
+
+                        @else
+
+                        <button type="button" class="btn"><a href="{{ route('login') }}" class="text-white text-decoration-none">Sign in</a></button>
+                        <button type="button" class="btn"><a href="{{ route('register') }}" class="text-white text-decoration-none">Sign up</a></button>
+                        @endauth
+
                     </div>
                     <!-- Toggle button -->
                     <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
@@ -95,7 +104,7 @@
                             <a class="nav-link active" aria-current="page" href="{{ route('user.houselisting') }}">Housing</a>
                         </li>
                         <!-- Support -->
-                        <li class="nav-item dropdown">
+                        <!--<li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Support
@@ -104,7 +113,7 @@
                                 <li><a class="dropdown-item" href="#">Track Order</a></li>
                                 <li><a class="dropdown-item" href="#">Shipping and Delivery</a></li>
                             </ul>
-                        </li>
+                        </li>-->
                     </ul>
                 </div>
             </div>
