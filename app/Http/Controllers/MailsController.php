@@ -62,7 +62,7 @@ class MailsController extends Controller
                         box-shadow: 0 2px 8px rgba(0,0,0,0.1);
                     }
                     .header {
-                        background-color: #4CAF50;
+                        background-color: #000000;
                         color: white;
                         padding: 20px;
                         text-align: center;
