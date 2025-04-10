@@ -97,16 +97,22 @@
 
                                     </div>
 
+
                                     <!-- Required Home Service -->
                                     <div class="my-2">
                                         <label for="service" class="form-label fw-semibold">Required Home Service</label>
-                                        <select name="service" id="state" class="form-select" required>
-                                            <option value="service1">Service 1</option>
-                                            <option value="service2">Service 2</option>
-                                            <option value="service3">Service 3</option>
-                                            <option value="service4">Service 4</option>
-                                            <option value="service5">Service 5</option>
+                                        <select name="service" id="service" class="form-select" required>
+                                            <option value="none">select service</option>
+                                            @foreach ($services as $service)
+                                                <option value="{{ $service->name }}" data-price="{{ $service->price }}" data-preprice="{{ $service->preprice }}">{{ $service->name }}</option>
+                                            @endforeach
+
                                         </select>
+                                    </div>
+
+                                    <div class="my-2">
+                                        <label for="lga" class="form-label fw-semibold">Price</label>
+                                        <input type="text" name="price" id="inputprice" class="form-control" readonly required>
                                     </div>
 
                                     <!-- Schedule Date and Time -->
@@ -128,7 +134,14 @@
 
                                         <div class="d-flex align-items-center justify-content-between my-2">
                                             <span class="fw-bold">Price Estimate</span>
-                                            <span>Price: <span>&#x020A6;6000</span></span>
+
+                                            <span class="font-bold" id="priceplace" style="font-weight: bold; display: none;">
+
+
+                                                <span>Pre Price: <s id="preprice" style="color: red;"></s></span>
+
+                                                    Price: <span id="price"></span>
+                                            </span>
                                         </div>
 
                                         <div class="d-flex align-items-center justify-content-between my-2 gap-2">
@@ -148,247 +161,296 @@
                         </div>
                     </div>
 
+
+                    <script>
+                        document.getElementById('service').addEventListener('change', function () {
+                            document.getElementById('priceplace').style.display = 'block';
+                            const selectedOption = this.options[this.selectedIndex];
+
+                            const price = selectedOption.getAttribute('data-price');
+                            const preprice = selectedOption.getAttribute('data-preprice');
+
+                            document.getElementById('inputprice').value = price;
+
+                            console.log("Price:", price);
+                            console.log("Previous Price:", preprice);
+
+                            // Example: Display in HTML
+                            document.getElementById('price').textContent = price ?? 'N/A';
+                            document.getElementById('preprice').textContent = preprice ?? 'N/A';
+                        });
+                        </script>
+
+
                     <!-- Completed Tab Content -->
                     <div class="tab-pane fade" id="completed-tab-pane" role="tabpanel">
 
-                        <!-- Completed Timeline 1 -->
+                        @foreach ($completeds as $complete)
+
+                        <!-- complete Time Line 2 -->
                         <div class="bg-lemney-secondary rounded-3 p-3 my-3">
                             <!-- Order Information -->
                             <div class="py-2 d-flex align-items-center justify-content-between">
                                 <div>
-                                    <div><b>Order Number: </b>L-NG1111241A</div>
-                                    <div><b>Dispatch Date: </b>11-11-2024</div>
-                                    <div><b>Delivery Date: </b>11-11-2024</div>
+                                    <div><b>Order Number: </b>{{ $complete->order_no }}</div>
+                                    <div><b>Order Date: </b>{{ $complete->created_at }}</div>
+                                    {{-- <div><b>Delivery Date: </b>11-11-2024</div> --}}
                                 </div>
                                 <div class="text-end">
                                     <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
                                         <img src="../../assets/img/package_check.svg" alt="">
-                                        Delivered
+                                        {{ $complete->status }}
                                     </span><br>
-                                    <div><b>Cost: </b><span class="text-uppercase">NGN 17,000</span></div>
+                                    <div><b>Cost: </b><span class="text-uppercase">NGN {{ number_format($complete->price, 2) }}</span></div>
                                 </div>
                             </div>
                             <!-- Order timeline -->
                             <div class="order-timeline">
                                 <div class="order-timeline-item">
-                                    <h5>Approval & Pick up</h5>
+                                    <h5>Service Location</h5>
                                     <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                        <div class="text-muted">{{ $complete->service_location }}</div>
+                                        <div class="text-muted">{{ $complete->date }} {{ $complete->time }}</div>
                                     </div>
                                 </div>
-                                <div class="order-timeline-item">
-                                    <h5>In Transit</h5>
+
+                                <br>
+
+                                <div class="order-timeline-item awaiting order-timeline-item-muted">
+                                    <h5>Other Information</h5>
                                     <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item">
-                                    <h5>Delivered</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                        <div>{{ $complete->receipient_lga }}, {{ $complete->receipient_state }}</div>
+                                        {{-- <div class="text-muted">11-11-2024 8:00am</div> --}}
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-
-                        <!--  -->
-                        <div class="bg-lemney-secondary rounded-3 p-3 my-3">
-                            <!-- Order Information -->
-                            <div class="py-2 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <div><b>Order Number: </b>L-NG1111241A</div>
-                                    <div><b>Dispatch Date: </b>11-11-2024</div>
-                                    <div><b>Delivery Date: </b>11-11-2024</div>
-                                </div>
-                                <div class="text-end">
-                                    <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
-                                        <img src="../../assets/img/package_check.svg" alt="">
-                                        Delivered
-                                    </span><br>
-                                    <div><b>Cost: </b><span class="text-uppercase">NGN 17,000</span></div>
-                                </div>
-                            </div>
-                            <!-- Order timeline -->
-                            <div class="order-timeline">
-                                <div class="order-timeline-item">
-                                    <h5>Approval & Pick up</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item">
-                                    <h5>In Transit</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item">
-                                    <h5>Delivered</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        @endforeach
 
                     </div>
 
                     <!-- Cancelled Tab Content -->
                     <div class="tab-pane fade" id="cancelled-tab-pane" role="tabpanel">
 
-                        <!-- Cancelled Time line 1 -->
+                        @foreach ($cancelleds as $cancelled)
 
+                        <!-- cancelled Time Line 2 -->
                         <div class="bg-lemney-secondary rounded-3 p-3 my-3">
                             <!-- Order Information -->
                             <div class="py-2 d-flex align-items-center justify-content-between">
                                 <div>
-                                    <div><b>Order Number: </b>L-NG1111241A</div>
-                                    <div><b>Dispatch Date: </b>11-11-2024</div>
-                                    <div><b>Delivery Date: </b>11-11-2024</div>
+                                    <div><b>Order Number: </b>{{ $cancelled->order_no }}</div>
+                                    <div><b>Order Date: </b>{{ $cancelled->created_at }}</div>
+                                    {{-- <div><b>Delivery Date: </b>11-11-2024</div> --}}
                                 </div>
                                 <div class="text-end">
                                     <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
                                         <img src="../../assets/img/package_check.svg" alt="">
-                                        Cancelled
+                                        {{ $cancelled->status }}
                                     </span><br>
-                                    <div><b>Cost: </b><span class="text-uppercase">NGN 17,000</span></div>
+                                    <div><b>Cost: </b><span class="text-uppercase">NGN {{ number_format($cancelled->price, 2) }}</span></div>
                                 </div>
                             </div>
                             <!-- Order timeline -->
                             <div class="order-timeline">
                                 <div class="order-timeline-item">
-                                    <h5>Approval & Pick up</h5>
+                                    <h5>Service Location</h5>
                                     <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                        <div class="text-muted">{{ $cancelled->service_location }}</div>
+                                        <div class="text-muted">{{ $cancelled->date }} {{ $cancelled->time }}</div>
                                     </div>
                                 </div>
-                                <div class="order-timeline-item order-timeline-item-muted">
-                                    <h5>In Transit</h5>
+
+                                <br>
+
+                                <div class="order-timeline-item awaiting order-timeline-item-muted">
+                                    <h5>Other Information</h5>
                                     <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item order-timeline-item-muted">
-                                    <h5>Awaiting Delivery</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                        <div>{{ $cancelled->receipient_lga }}, {{ $cancelled->receipient_state }}</div>
+                                        {{-- <div class="text-muted">11-11-2024 8:00am</div> --}}
                                     </div>
                                 </div>
                             </div>
 
                         </div>
 
-                        <!-- Cancelled Time Line 2 -->
-                        <div class="bg-lemney-secondary rounded-3 p-3 my-3">
-                            <!-- Order Information -->
-                            <div class="py-2 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <div><b>Order Number: </b>L-NG1111241A</div>
-                                    <div><b>Dispatch Date: </b>11-11-2024</div>
-                                    <div><b>Delivery Date: </b>11-11-2024</div>
-                                </div>
-                                <div class="text-end">
-                                    <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
-                                        <img src="../../assets/img/package_check.svg" alt="">
-                                        Cancelled
-                                    </span><br>
-                                    <div><b>Cost: </b><span class="text-uppercase">NGN 17,000</span></div>
-                                </div>
-                            </div>
-                            <!-- Order timeline -->
-                            <div class="order-timeline">
-                                <div class="order-timeline-item">
-                                    <h5>Approval & Pick up</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item order-timeline-item-muted">
-                                    <h5>In Transit</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                                <div class="order-timeline-item order-timeline-item-muted">
-                                    <h5>Awaiting Delivery</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
+                        @endforeach
                     </div>
 
                     <!-- Ongoing Tab Content -->
                     <div class="tab-pane fade" id="ongoing-tab-pane" role="tabpanel">
 
                         <!-- Ongoing Time line 1 -->
-
-                        <div class="bg-lemney-secondary rounded-3 p-3 my-3">
                             <!-- Order Information -->
 
                             @foreach ($ongoings as $ongoing)
                             <!-- Ongoing Time Line 2 -->
-                        <div class="bg-lemney-secondary rounded-3 p-3 my-3">
-                            <!-- Order Information -->
-                            <div class="py-2 d-flex align-items-center justify-content-between">
-                                <div>
-                                    <div><b>Order Number: </b>L-NG1111241A</div>
-                                    <div><b>Dispatch Date: </b>11-11-2024</div>
-                                    <div><b>Delivery Date: </b>11-11-2024</div>
-                                </div>
-                                <div class="text-end">
-                                    <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
-                                        <img src="../../assets/img/package_check.svg" alt="">
-                                        In Transit
-                                    </span><br>
-                                    <div><b>Cost: </b><span class="text-uppercase">NGN 17,000</span></div>
-                                </div>
-                            </div>
-                            <!-- Order timeline -->
-                            <div class="order-timeline">
-                                <div class="order-timeline-item">
-                                    <h5>Approval & Pick up</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                <div class="bg-lemney-secondary rounded-3 p-3 my-3">
+                                    <!-- Order Information -->
+                                    <div class="py-2 d-flex align-items-center justify-content-between">
+                                        <div>
+                                            <div><b>Order Number: </b>{{ $ongoing->order_no }}</div>
+                                            <div><b>Order Date: </b>{{ $ongoing->created_at }}</div>
+                                            {{-- <div><b>Delivery Date: </b>11-11-2024</div> --}}
+                                        </div>
+                                        <div class="text-end">
+                                            <span class="rounded-1 p-2 text-lemney-primary fw-bold bg-lemney-secondary-2">
+                                                <img src="../../assets/img/package_check.svg" alt="">
+                                                {{ $ongoing->status }}
+                                            </span><br>
+                                            <div><b>Cost: </b><span class="text-uppercase">NGN {{ number_format($ongoing->price, 2) }}</span></div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="order-timeline-item">
-                                    <h5>In Transit</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                                    <!-- Order timeline -->
+                                    <div class="order-timeline">
+                                        <div class="order-timeline-item">
+                                            <h5>Service Location</h5>
+                                            <div>
+                                                <div class="text-muted">{{ $ongoing->service_location }}</div>
+                                                <div class="text-muted">{{ $ongoing->date }} {{ $ongoing->time }}</div>
+                                            </div>
+                                        </div>
+
+                                        <br>
+
+                                        <div class="order-timeline-item awaiting order-timeline-item-muted">
+                                            <h5>Other Information</h5>
+                                            <div>
+                                                <div>{{ $ongoing->receipient_lga }}, {{ $ongoing->receipient_state }}</div>
+                                                {{-- <div class="text-muted">11-11-2024 8:00am</div> --}}
+                                            </div>
+                                        </div>
                                     </div>
+
+                                    <br>
+
+
+                                    @if ($ongoing->pay == null)
+                                        <button data-bs-toggle="modal" data-bs-target="#reviewModal"
+                                        class="btn btn-lemney-primary">Make Payment</button>
+
+                                        <button
+                                        class="btn btn-lemney-outline-primary"><a href="{{ route('user.homeservice.delete', $ongoing->id) }}" class="text-decoration-none" style="color: inherit">Cancel
+                                        Order</a></button>
+
+                                    @elseif ($ongoing->pay == 'approved')
+                                        <span
+                                        class="btn btn-lemney-primary">Payment Approved</span>
+                                    @endif
+
+
+
+
+                            <!-- Review Modal -->
+                            <form method="post" action="javascript:void('')">
+
+                                <div class="modal fade" id="reviewModal" data-bs-keyboard="false" tabindex="-1"
+                                    aria-labelledby="Cancel Order Confirmation Modal" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable mx-auto rounded-3"
+                                        style="max-width: 360px;">
+                                        <div class="modal-content p-3">
+                                            <!-- Modal header -->
+                                            <!--<div class="modal-header border-0 p-2">
+                                                <h2 class="text-uppercase fs-4 my-0">Review</h2>
+                                            </div>-->
+                                            <!-- Modal body -->
+                                            <div class="modal-body p-2">
+
+                                                <!-- Email address -->
+                                                <div class="my-2">
+                                                    <label for="email" class="form-label fw-bold">Amount (NGN)</label>
+                                                    <input type="email" name="acc" id="email" value="{{ number_format($ongoing->price, 2) }}"
+                                                        class="form-control" readonly>
+                                                </div>
+
+                                                <!-- Email address -->
+                                                <div class="my-2">
+                                                    <label for="email" class="form-label fw-bold">Account Number</label>
+                                                    <div style="display: flex; align-items: center;">
+                                                    <input type="email" name="acc" id="email" value="{{ $accountdetails->accountnumber }}"
+                                                        class="form-control w-70"><span style="position: absolute; right: 0; color: #F58625; font-size: 23px;"><i class="fa fa-copy" onclick="copyTextToClipboard('{{ $accountdetails->accountnumber }}')"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Summary -->
+                                                <div class="my-2">
+                                                    <label for="summary" class="form-label fw-bold">Account Name</label>
+
+                                                    <div style="display: flex; align-items: center;">
+                                                    <input type="text" name="summary" id="summary" value="{{ $accountdetails->accountname }}"
+                                                        class="form-control"><span style="position: absolute; right: 0; color: #F58625; font-size: 23px;"><i class="fa fa-copy" onclick="copyTextToClipboard('{{ $accountdetails->accountname }}')"></i></span>
+                                                    </div>
+                                                </div>
+
+                                                <!-- Review -->
+                                                <div class="my-2">
+                                                    <label for="review" class="form-label fw-bold">Bank Name</label>
+
+                                                    <div style="display: flex; align-items: center;">
+                                                    <input type="text" name="summary" id="summary" value="{{ $accountdetails->bankname }}"
+                                                        class="form-control"><span style="position: absolute; right: 0; color: #F58625; font-size: 23px;"><i class="fa fa-copy" onclick="copyTextToClipboard('{{ $accountdetails->bankname }}')"></i></span>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <!-- Modal footer -->
+                                            <div class="modal-footer border-0 p-2">
+                                                <button type="submit" class="btn btn-lemney-primary px-4"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#reviewSubmissionConfirmationModal">Made Payment?</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
                                 </div>
-                                <div class="order-timeline-item awaiting order-timeline-item-muted">
-                                    <h5>Awaiting Delivery</h5>
-                                    <div>
-                                        <div class="text-muted">No. 6 Street Awka, Anambra</div>
-                                        <div class="text-muted">11-11-2024 8:00am</div>
+                            </form>
+
+                            <!-- Review Modal Ends here -->
+
+                            <!-- Review Submission Confirmation Modal -->
+                            <div class="modal fade" id="reviewSubmissionConfirmationModal" data-bs-backdrop="static"
+                                data-bs-keyboard="false" tabindex="-1"
+                                aria-labelledby="Review Submission Confirmation Modal" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered mx-auto rounded-3"
+                                    style="max-width: 360px;">
+                                    <div class="modal-content p-3">
+                                        <div class="text-center fw-bold">
+                                            <form action="{{ route('user.homeservice.payment.upload') }}" enctype="multipart/form-data" method="post">
+                                                @csrf
+                                                <div class="my-2">
+
+
+                                                    <input type="hidden" name="id" value="{{ $ongoing->id }}">
+                                                    <label for="images" class="form-label">
+                                                        <p class="fw-bold">Upload Receipt</p>
+
+                                                        <div class="d-flex align-items-center justify-content-center border border-black rounded-1"
+                                                            style="width: 80px; height: 80px">
+                                                            <i class="fa fa-file-upload"></i>
+                                                        </div>
+                                                    </label>
+                                                    <input type="file" name="images" id="images" class="d-none">
+                                                </div>
+
+                                            <!--<p class="mb-4">Are you sure you want to <span
+                                                    class="fw-bold">Submit</span>?</p>-->
+
+                                            <div class="d-flex align-items-center justify-content-between mt-4">
+                                                <button class="btn btn-lemney-primary fw-bold px-5">Upload</button>
+                                                <button class="btn btn-lemney-outline-primary fw-bold px-5"
+                                                    data-bs-dismiss="modal" type="reset">Cancel</button>
+                                            </div>
+                                        </form>
+                                        </div>
+
                                     </div>
                                 </div>
                             </div>
 
-                        </div>
+                                </div>
                             @endforeach
-
-                        </div>
 
                     </div>
                 </div>
@@ -396,5 +458,17 @@
         </div>
     </main>
 
+
+    <script>
+        function copyTextToClipboard(text) {
+          var copyText = document.createElement("textarea");
+          copyText.value = text;
+          document.body.appendChild(copyText);
+          copyText.select();
+          document.execCommand("copy");
+          document.body.removeChild(copyText);
+          alert("Copied: " + text);
+        }
+    </script>
 
 @include('layouts.authfooter')

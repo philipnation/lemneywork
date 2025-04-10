@@ -16,7 +16,8 @@ class HoneyController extends Controller
             return redirect('admin/login')->with('error', 'Session Closed');
         }
 
-        $honeys = Honey::where('status', '!=', 'completed')->orderByDesc('id')->get();
+        $honeys = Honey::where('saved', null)
+                    ->where('status', '!=', 'completed')->orderByDesc('id')->get();
 
         $honey_history = Honey::where('status', 'completed')->get()->sortDesc();
 
@@ -43,5 +44,14 @@ class HoneyController extends Controller
         $homeservice->save();
 
         return redirect()->route('admin.honey')->with('success', 'Status Updated successfully');
+    }
+
+    public function updatepayment(Request $request)
+    {
+        $honey = Honey::where('id', $request->id)->first();
+        $honey->pay = $request->status;
+        $honey->save();
+
+        return redirect()->route('admin.honey')->with('success', 'Payment status updated successfully');
     }
 }

@@ -8,5 +8,5 @@ class Homeservice extends Model
 {
     protected $table = 'homeservices';
 
-    protected $fillable = ['orderno', 'saved', 'userid', 'receipient_name', 'receipient_state', 'receipient_lga', 'service_location', 'service', 'phone', 'date', 'time', 'status'];
+    protected $fillable = ['orderno', 'saved', 'userid', 'pay', 'image', 'receipient_name', 'receipient_state', 'receipient_lga', 'service_location', 'service', 'phone', 'date', 'time', 'status'];
 }

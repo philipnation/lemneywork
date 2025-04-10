@@ -1,41 +1,115 @@
 @include('layouts.admin.header')
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+<style>
+    .card-box {
+      width: 120px;
+      height: 120px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+    .card-dark { background-color: #552f00; }
+    .card-orange { background-color: #f7931e; }
+    .card-yellow { background-color: #ffc20e; }
+
+    .bar-label {
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      width: 100%;
+      color: white;
+    }
+    .bar-left {
+      background-color: #552f00;
+      padding: 12px;
+      flex: 1;
+    }
+    .bar-right-orange {
+      background-color: #f7931e;
+      padding: 12px;
+      width: 60px;
+      text-align: center;
+      color: black;
+    }
+    .bar-right-yellow {
+      background-color: #ffc20e;
+      padding: 12px;
+      width: 60px;
+      text-align: center;
+      color: black;
+    }
+  </style>
             <!-- Main content -->
             <div class="flex-grow-1">
 
-                <!--  -->
-                <div class="p-3">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <!-- Empty div to push Search Bar to the end -->
-                        <div>
-                            <div class="d-md-none">
-                                <!--  -->
+                <div class="p-3 d-block d-lg-flex w-100 m-0" style="align-items: center;">
+                    <div class="container">
+                        <h3 class="mb-4 fw-semibold text-dark">Statistics</h3>
+                        <div class="d-flex justify-content-center">
+                        <canvas id="activityChart"></canvas>
+                        </div>
+                        <div class="d-flex justify-content-center gap-4 mt-4">
+                        <div class="d-flex align-items-center gap-2">
+                            <div style="width: 15px; height: 15px; background-color: #552f00; border-radius: 50%;"></div>
+                            <span class="text-dark">Honey Sales</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div style="width: 15px; height: 15px; background-color: #f7901e; border-radius: 50%;"></div>
+                            <span class="text-dark">Logistics</span>
+                        </div>
+                        <div class="d-flex align-items-center gap-2">
+                            <div style="width: 15px; height: 15px; background-color: #ffd32d; border-radius: 50%;"></div>
+                            <span class="text-dark">Home Service</span>
+                        </div>
+                        </div>
+                    </div>
+
+                    <br>
+
+                    <div class="container rounded text-center">
+                        <!--<p class="mb-4 fs-5">
+                        These records are by number of fulfilled order once shipped to customer. Record cannot be tampered with and are absolute
+                        </p>-->
+
+                        <div class="d-flex gap-4 flex-wrap align-items-center mb-4">
+                        <div class="card-box card-dark">
+                            <h2> {{ number_format($honey_total, 0) }}</h2>
+                            <div>Honey</div>
+                            <div>Orders</div>
+                        </div>
+                        <div class="card-box card-orange">
+                            <h2>{{ number_format($logistics_total, 0)}}</h2>
+                            <div>Logistics</div>
+                        </div>
+                        <div class="card-box card-yellow">
+                            <h2>{{ number_format($homeservice_total, 0) }}</h2>
+                            <div>Home</div>
+                            <div>Service</div>
+                        </div>
+                        </div>
+
+                        <div class="d-flex flex-column gap-3">
+                        <div class="bar-label">
+                            <div class="bar-left">
+                            Web Visits (Today)
+                            </div>
+                            <div class="bar-right-orange">
+                            {{ number_format($visits, 0) }}
                             </div>
                         </div>
 
-                        <!--  -->
-                        <div>
-                            <!-- Search Bar -->
-                            <div class="header-search-bar input-group d-flex align-items-stretch rounded-pill p-1">
-                                <span class="rounded-start-pill ps-2">
-                                    <button class="btn d-md-none" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasExample">
-                                        <i class="fa fa-bars"></i>
-                                    </button>
-
-                                    <button class="btn d-none d-md-inline-block">
-                                        <i class="fa fa-bars"></i>
-                                    </button>
-                                </span>
-                                <input type="search" name="search-keyword" id="search-keyword" class="form-control"
-                                    placeholder="Search">
-                                <span class="px-3 rounded-end-pill">
-                                    <label for="search-keyword"
-                                        class="form-label h-100 d-flex align-items-center justify-content-center"><i
-                                            class="fa fa-search"></i></label>
-                                </span>
+                        <div class="bar-label">
+                            <div class="bar-left">
+                            Reg. Users
                             </div>
+                            <div class="bar-right-yellow">
+                            {{ number_format($users_total, 0) }}
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>
@@ -120,21 +194,9 @@
                                                 </svg>
                                             </button> -->
 
-                                            @if ($homeservice->pay == 'pending')
-                                            <button class="btn btn-lemney">
-                                                <!--<svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M12.0001 -0.00146484C16.4941 -0.00146484 20.2391 3.7435 20.2391 8.23757C20.2391 9.70429 19.7349 11.1508 19.0303 12.4614C18.323 13.777 17.3867 15.0055 16.4564 16.0513C15.5244 17.0992 14.5827 17.9814 13.849 18.6048C13.4825 18.9161 13.1617 19.1681 12.9144 19.3465C12.7923 19.4346 12.6779 19.5121 12.5791 19.5714C12.531 19.6002 12.4724 19.6335 12.4101 19.6623C12.3791 19.6765 12.3345 19.6957 12.2813 19.7127C12.2394 19.7261 12.1348 19.7574 12.0001 19.7574C11.8642 19.7574 11.7587 19.7256 11.7167 19.712C11.6632 19.6947 11.6184 19.6753 11.5874 19.6609C11.525 19.6318 11.4663 19.5984 11.4183 19.5692C11.3195 19.5094 11.2052 19.4312 11.0831 19.3424C10.836 19.1628 10.5153 18.909 10.149 18.5957C9.41567 17.9686 8.47439 17.0818 7.54283 16.0311C6.61312 14.9825 5.67726 13.7529 4.97015 12.4403C4.26607 11.1334 3.76106 9.69279 3.76106 8.23757C3.76106 3.7435 7.50602 -0.00146484 12.0001 -0.00146484ZM12.0001 10.6982C10.6411 10.6982 9.53946 9.59653 9.53946 8.23757C9.53946 6.8786 10.6411 5.77693 12.0001 5.77693C13.3591 5.77693 14.4607 6.8786 14.4607 8.23757C14.4607 9.59653 13.3591 10.6982 12.0001 10.6982ZM17.313 17.4108C17.6293 17.0552 17.9457 16.6827 18.2563 16.2957H20.5588C20.9017 16.2957 21.2116 16.5 21.3467 16.8152L23.9142 22.8063C24.0277 23.0712 24.0006 23.3753 23.842 23.6158C23.6834 23.8563 23.4145 24.001 23.1265 24.001H0.873746C0.585625 24.001 0.316777 23.8563 0.158169 23.6158C-0.000439687 23.3753 -0.0275883 23.0712 0.0859093 22.8063L2.65351 16.8152C2.78858 16.5 3.09847 16.2957 3.44137 16.2957H5.76479C6.06834 16.6737 6.37734 17.0379 6.68606 17.3861C7.82012 18.6653 8.9662 19.7451 9.85843 20.508C10.3042 20.8892 10.6927 21.1966 10.9903 21.4129C11.1376 21.5201 11.2728 21.6123 11.3873 21.6816C11.4432 21.7155 11.5083 21.7525 11.5759 21.7841C11.6096 21.7998 11.6566 21.8201 11.712 21.8379C11.7559 21.8521 11.8629 21.8844 12 21.8844C12.1359 21.8844 12.2421 21.8526 12.2858 21.8388C12.3409 21.8211 12.3878 21.801 12.4214 21.7854C12.4889 21.7542 12.554 21.7176 12.6099 21.684C12.7244 21.6152 12.8597 21.5237 13.007 21.4174C13.3048 21.2026 13.6935 20.8974 14.1394 20.5186C15.032 19.7604 16.1785 18.6862 17.313 17.4108Z"
-                                                        fill="black" />
-                                                </svg>-->
-                                                <a href="{{ asset('public/homeservicepayment/'.$homeservice->image) }}" target="_blank"><i class="fa fa-eye"></i></a>
-                                            </button>
-                                            @endif
-
                                         </div>
 
-                                        <!--@if ($homeservice->status == 'ongoing')
+                                        @if ($homeservice->status == 'ongoing')
                                         <form action="{{ route('admin.homeservice.update') }}" method="post">
                                             @csrf
                                             <div class="flex-column">
@@ -147,19 +209,7 @@
                                                 <button type="submit" class="btn btn-lemney-primary px-md-4">Update</button>
                                             </div>
                                         </form>
-                                        @endif-->
-
-
-                                        @if ($homeservice->status == 'pending')
-                                            <button class="btn btn-lemney-primary px-md-4"><a href="{{ route('admin.homeservice.update.status', [$homeservice->id, 'ongoing']) }}" class="text-white text-decoration-none">Approve</a></button>
-                                        @elseif ($homeservice->status == 'ongoing' && $homeservice->pay == 'pending')
-                                            <button class="btn btn-lemney-primary px-md-4"><a href="{{ route('admin.homeservice.update.payment', [$homeservice->id, 'approved']) }}" class="text-white text-decoration-none">Confirm Payment</a></button>
-                                        @elseif ($homeservice->status == 'ongoing' && $homeservice->pay == 'approved')
-                                            <button class="btn btn-lemney-primary px-md-4"><a href="{{ route('admin.homeservice.update.status', [$homeservice->id, 'completed']) }}" class="text-white text-decoration-none">Complete Order</a></button>
-                                        @elseif ($homeservice->status == 'ongoing' && $homeservice->pay == null)
-                                            <button class="btn btn-lemney-primary px-md-4"><a href="{{ route('admin.homeservice.update.status', [$homeservice->id, 'cancelled']) }}" class="text-white text-decoration-none">Cancel Order</a></button>
                                         @endif
-
 
                                     </div>
                                 </div>
@@ -219,4 +269,29 @@
             </div>
         </div>
     </main>
+
+    <script>
+        const ctx = document.getElementById('activityChart').getContext('2d');
+        new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ['Home Service', 'Logistics', 'Honey Sales'],
+            datasets: [{
+              data: [{{ $homePercent }}, {{ $logisticsPercent }}, {{ $honeyPercent }}],
+              backgroundColor: ['#ffd32d', '#f7901e', '#552f00'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                enabled: false
+              }
+            }
+          }
+        });
+      </script>
 @include('layouts.admin.footer')

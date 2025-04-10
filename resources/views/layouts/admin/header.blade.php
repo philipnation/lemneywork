@@ -77,26 +77,26 @@
 
             <!-- Sidebar Menu Options -->
             <ul class="sidebar-menu-list list-group list-group-flush">
-                {{-- <li><a href="./recent.html" class="list-group-item list-group-item-action">Recent</a></li> --}}
-                <!--<li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
-                        Orders</a></li>-->
-                <li><a href="{{ route('admin.honey') }}" class="list-group-item list-group-item-action">Honey Orders</a>
+                <li><a href="{{ route('admin.index') }}" class="list-group-item list-group-item-action p-3">Dashboard</a></li>
+                <li><a href="{{ route('admin.honey') }}" class="list-group-item list-group-item-action p-3">Honey Orders</a>
                 </li>
 
-                <li><a href="{{ route('admin.logistics') }}" class="list-group-item list-group-item-action">Logistics</a></li>
-                <li><a href="{{ route('admin.homeservice') }}" class="list-group-item list-group-item-action">Home
+                <li><a href="{{ route('admin.logistics') }}" class="list-group-item list-group-item-action p-3">Logistics</a></li>
+                <li><a href="{{ route('admin.homeservice') }}" class="list-group-item list-group-item-action p-3">Home
                         Service</a>
                 </li>
-                <li><a href="./booked_service.html" class="list-group-item list-group-item-action">Booked
-                        Services</a></li>
-                <li><a href="./support.html"
+                <!--<li><a href="./booked_service.html" class="list-group-item list-group-item-action">Booked
+                        Services</a></li>-->
+                <!--<li><a href="./support.html"
                         class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
                         Support
                         <i class="fa fa-unlock-alt"></i>
                     </a></li>
-                <li>
+                <li>-->
+                    <li><a href="{{ route('admin.service') }}" class="list-group-item list-group-item-action">Services</a></li>
+
                     <a href="{{ route('admin.homeservice') }}"
-                        class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">
+                        class="list-group-item list-group-item-action p-3 d-flex align-items-center justify-content-between">
                         Service Agent
                         <i class="fa fa-unlock-alt"></i>
                     </a>
@@ -139,7 +139,7 @@
 
                     <!-- Sidebar Menu Options -->
                     <ul class="sidebar-menu-list list-unstyled list-group list-group-flush">
-                        {{-- <li><a href="./recent.html" class="list-group-item list-group-item-action">Recent</a></li> --}}
+                        <li><a href="{{ route('admin.index') }}" class="list-group-item list-group-item-action">Dashboard</a></li>
                         <!--<li><a href="./pending_orders.html" class="list-group-item list-group-item-action">Pending
                                 Orders</a></li>-->
                         <li><a href="{{ route('admin.honey') }}" class="list-group-item list-group-item-action">Honey
@@ -157,6 +157,8 @@
                                 Support
                                 <i class="fa fa-unlock-alt"></i>
                             </a></li>
+
+                            <li><a href="{{ route('admin.service') }}" class="list-group-item list-group-item-action">Services</a></li>
                         <li>
                             <a href="{{ route('admin.serviceagent') }}"
                                 class="list-group-item list-group-item-action d-flex align-items-center justify-content-between">

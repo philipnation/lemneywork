@@ -62,10 +62,14 @@ Route::post('/user/profile/password', [ProfileController::class, 'passwordupdate
 //User Homeservice
 Route::get('/user/homeservice', [HomeserviceController::class, 'index'])->middleware(['auth', 'verified'])->name('user.homeservice');
 Route::post('/user/homeservice', [HomeserviceController::class, 'store'])->middleware(['auth', 'verified'])->name('user.homeservice.store');
+Route::get('/user/homeservice/delete/{id}', [HomeserviceController::class, 'deletehoney'])->middleware(['auth', 'verified'])->name('user.homeservice.delete');
+Route::post('/user/homeservice/payment/upload', [HomeserviceController::class, 'paymentupload'])->middleware(['auth', 'verified'])->name('user.homeservice.payment.upload');
 
 
 //User Honey Order
 Route::get('/user/honey', [HoneyController::class, 'index'])->middleware(['auth', 'verified'])->name('user.honey');
+Route::get('/user/honey/delete/{id}', [HoneyController::class, 'deletehoney'])->middleware(['auth', 'verified'])->name('user.honey.delete');
+Route::post('/user/honey/payment/upload', [HoneyController::class, 'paymentupload'])->middleware(['auth', 'verified'])->name('user.honey.payment.upload');
 Route::post('/user/honey', [HoneyController::class, 'store'])->middleware(['auth', 'verified'])->name('user.honey.store');
 Route::post('/user/honey/home', [HoneyController::class, 'storehome'])->middleware(['auth', 'verified'])->name('user.honey.home.store');
 

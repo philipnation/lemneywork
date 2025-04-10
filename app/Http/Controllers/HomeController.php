@@ -6,6 +6,7 @@ use App\Models\HouseListing;
 use App\Models\User;
 use App\Http\Controllers\MailsController;
 use App\Models\Adminauth;
+use App\Models\WebsiteVisits;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use Illuminate\Http\Request;
@@ -18,6 +19,22 @@ use Illuminate\Support\Facades\View;
 class HomeController extends Controller
 {
     function home(){
+
+        $visits_b = WebsiteVisits::where('ip_address', request()->ip())
+        ->where('visit_time', date('Y-m-d'))
+        ->first();
+
+        //dd($visits_b);
+
+        if($visits_b == null){
+            $visits = new WebsiteVisits();
+            $visits->ip_address = request()->ip();
+            $visits->user_agent = request()->userAgent();
+            $visits->visit_time = date('Y-m-d');
+            $visits->save();
+        }
+        //dd($visits);
+
         $house_listings = HouseListing::where('status', 'approved')->get();
         foreach ($house_listings as $house_listing) {
             $images = json_decode($house_listing->images, true); // Decode JSON into an array
@@ -25,6 +42,7 @@ class HomeController extends Controller
             $house_listing->img = $firstImage;
             //dd($firstImage);
         }
+
         return view('welcome', compact('house_listings'));
     }
 

@@ -28,7 +28,7 @@ class AuthController extends Controller
         }
         else{
             session(['id' => $admin->id]);
-            return redirect()->route('admin.homeservice')->with('success', 'Login successful');
+            return redirect()->route('admin.index')->with('success', 'Login successful');
         }
     }
 }

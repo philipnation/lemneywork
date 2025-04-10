@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Accountdetail;
 use App\Models\Honey;
+use App\Models\HoneyPrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,8 +13,28 @@ class HoneyController extends Controller
 {
     public function index()
     {
-        $price = 100;
-        return view('user.honeyorder', compact('price'));
+
+        $ongoings = Honey::where('userid', Auth::user()->id)
+                ->where('status', 'ongoing')
+                ->where('saved', null)
+                ->get();
+
+                //dd($ongoings);
+
+        $completeds = Honey::where('userid', Auth::user()->id)
+                        ->where('status', 'completed')
+                        ->where('saved', null)
+                        ->get();
+
+
+        $cancelleds = Honey::where('userid', Auth::user()->id)
+                        ->where('status', 'cancelled')
+                        ->where('saved', null)
+                        ->get();
+
+        $honey_prices = HoneyPrice::all();
+        $accountdetails = Accountdetail::first();
+        return view('user.honeyorder', compact( 'ongoings', 'completeds', 'cancelleds', 'honey_prices', 'accountdetails'));
     }
 
     public function store(Request $request)
@@ -66,5 +88,31 @@ class HoneyController extends Controller
         $homeservice->save();
 
         return redirect()->route('user.honey')->with('success', 'Your order has been placed successfully');
+    }
+
+    public function deletehoney(Request $request)
+    {
+        $honey = Honey::where('id', $request->id)->first();
+        $honey->delete();
+
+        return redirect()->route('user.honey')->with('success', 'Honey order deleted successfully');
+    }
+
+    public function paymentupload(Request $request)
+    {
+        $honey = Honey::where('id', $request->id)->first();
+        $honey->pay = 'pending';
+
+        if ($request->hasFile('images')) {
+            $image = $request->file('images');
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('honeypayment'), $imageName);
+            $honey->image = $imageName;
+        }else{
+            return redirect()->route('user.homeservice')->with('error', 'Payment receipt is missing.');
+        }
+        $honey->save();
+
+        return redirect()->route('user.honey')->with('success', 'Payment uploaded successfully');
     }
 }
